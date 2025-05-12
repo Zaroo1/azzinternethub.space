@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azz Internet Hub - Voucher Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --deep-blue: #0a2463;
+            --white: #ffffff;
+            --light-blue: #3e92cc;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .voucher-portal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .portal-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .portal-header img {
+            max-height: 80px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        .portal-header h1 {
+            color: var(--deep-blue);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .portal-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--light-blue);
+            border-radius: 2px;
+        }
+
+        .portal-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .voucher-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .voucher-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .voucher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .voucher-header {
+            background: var(--deep-blue);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .voucher-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .voucher-header .price {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .voucher-body {
+            padding: 2rem;
+        }
+
+        .voucher-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .voucher-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .voucher-features i {
+            color: var(--deep-blue);
+            margin-right: 0.5rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .quantity-btn {
+            background: var(--deep-blue);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background: var(--light-blue);
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 1rem;
+            padding: 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--deep-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .add-to-cart:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
+        }
+
+        .cart-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h2 {
+            color: var(--deep-blue);
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-quantity {
+            background: var(--deep-blue);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .cart-item-remove {
+            color: #ff6b6b;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: var(--transition);
+        }
+
+        .cart-item-remove:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--deep-blue);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .discount-message {
+            color: #27ae60;
+            font-weight: 500;
+            margin: 1rem 0;
+            text-align: right;
+            display: none;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        .checkout-btn:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        .receipt-section {
+            display: none;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .receipt-section h2 {
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+        }
+
+        .receipt-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .receipt-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--deep-blue);
+        }
+
+        .whatsapp-actions {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #25D366;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .or-divider {
+            margin: 1.5rem 0;
+            position: relative;
+            color: #666;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        .reference-copy {
+            display: flex;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        #reference-copy-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px 0 0 8px;
+            font-family: inherit;
+        }
+
+        #copy-btn {
+            background: var(--deep-blue);
+            color: white;
+            border: none;
+            padding: 0 1.2rem;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #copy-btn:hover {
+            background: var(--light-blue);
+        }
+
+        .copied-message {
+            color: #27ae60;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .voucher-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .portal-header h1 {
+                font-size: 2rem;
+            }
+            
+            .reference-copy {
+                flex-direction: column;
+            }
+            
+            #reference-copy-input {
+                border-radius: 8px 8px 0 0;
+            }
+            
+            #copy-btn {
+                border-radius: 0 0 8px 8px;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="voucher-portal">
+        <div class="portal-header">
+            <!-- Replace with your logo path -->
+            <img src="your-logo.png" alt="Azz Internet Hub Logo">
+            <h1>WAEC/BECE Voucher Portal</h1>
+            <p>Purchase your examination checkers securely and receive them instantly via WhatsApp after payment <br><br>
+<br>
+1 CHECKER IS 25 CEDIS
+<br>
+5 CHECKERS IS 23 CEDIS EACH
+<br>
+10 or more is 19 CEDIS EACH
+<br></p>
+        </div>
+
+        <div class="voucher-container">
+            <div class="voucher-card">
+                <div class="voucher-header">
+                    <h3>WAEC Checker</h3>
+                    <div class="price">₵1</div>
+                </div>
+                <div class="voucher-body">
+                    <ul class="voucher-features">
+                        <li><i class="fas fa-check-circle"></i> Valid for WASSCE/NovDec results</li>
+                        <li><i class="fas fa-check-circle"></i> Instant delivery after payment</li>
+                        <li><i class="fas fa-check-circle"></i> Secure and reliable</li>
+                    </ul>
+                    <div class="quantity-control">
+                        <button class="quantity-btn minus" data-type="wassce">-</button>
+                        <input type="number" class="quantity-input" data-type="wassce" value="0" min="0">
+                        <button class="quantity-btn plus" data-type="wassce">+</button>
+                    </div>
+                    <button class="add-to-cart" data-type="wassce">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="voucher-card">
+                <div class="voucher-header">
+                    <h3>BECE Checker</h3>
+                    <div class="price">₵1</div>
+                </div>
+                <div class="voucher-body">
+                    <ul class="voucher-features">
+                        <li><i class="fas fa-check-circle"></i> Valid for BECE results</li>
+                        <li><i class="fas fa-check-circle"></i> Instant delivery after payment</li>
+                        <li><i class="fas fa-check-circle"></i> Secure and reliable</li>
+                    </ul>
+                    <div class="quantity-control">
+                        <button class="quantity-btn minus" data-type="bece">-</button>
+                        <input type="number" class="quantity-input" data-type="bece" value="0" min="0">
+                        <button class="quantity-btn plus" data-type="bece">+</button>
+                    </div>
+                    <button class="add-to-cart" data-type="bece">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-section">
+            <div class="cart-header">
+                <h2>Your Order Summary</h2>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="total-amount">₵0.00</span>
+                </div>
+            </div>
+            <div class="discount-message" id="discount-message"></div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <p class="empty-cart-message">Your cart is empty</p>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+
+        <div class="receipt-section" id="receipt-section">
+            <h2>Payment Successful! 🎉</h2>
+            <p>Thank you for your purchase. Your voucher details will be sent to you shortly.</p>
+            
+            <div class="receipt-details">
+                <p><span class="highlight">Order Reference:</span> <span id="reference-number"></span></p>
+                <p><span class="highlight">Total Paid:</span> <span id="paid-amount"></span></p>
+                <p><span class="highlight">Items Purchased:</span></p>
+                <ul id="receipt-items"></ul>
+            </div>
+            
+            <div class="whatsapp-actions">
+                <a id="whatsapp-btn" class="whatsapp-btn pulse" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Send Reference via WhatsApp
+                </a>
+                <p class="or-divider">or copy manually:</p>
+                <div class="reference-copy">
+                    <input type="text" id="reference-copy-input" readonly>
+                    <button id="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                </div>
+                <p class="copied-message" id="copied-message">Copied to clipboard!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cart state
+            const cart = {
+                items: [],
+                total: 0
+            };
+
+            // DOM elements
+            const cartItemsEl = document.getElementById('cart-items');
+            const totalAmountEl = document.getElementById('total-amount');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const receiptSection = document.getElementById('receipt-section');
+            const discountMessageEl = document.getElementById('discount-message');
+            const whatsappBtn = document.getElementById('whatsapp-btn');
+            const referenceCopyInput = document.getElementById('reference-copy-input');
+            const copyBtn = document.getElementById('copy-btn');
+            const copiedMessage = document.getElementById('copied-message');
+
+            // Product prices
+            const prices = {
+                wassce: 1,
+                bece: 1
+            };
+
+            // Quantity controls
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const type = this.dataset.type;
+                    const input = document.querySelector(`.quantity-input[data-type="${type}"]`);
+                    let value = parseInt(input.value);
+                    
+                    if (this.classList.contains('plus')) {
+                        value++;
+                    } else {
+                        value = Math.max(0, value - 1);
+                    }
+                    
+                    input.value = value;
+                });
+            });
+
+            // Add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const type = this.dataset.type;
+                    const input = document.querySelector(`.quantity-input[data-type="${type}"]`);
+                    const quantity = parseInt(input.value);
+                    
+                    if (quantity > 0) {
+                        addToCart(type, quantity);
+                        input.value = 0;
+                    }
+                });
+            });
+
+            // Add item to cart
+            function addToCart(type, quantity) {
+                const existingItemIndex = cart.items.findIndex(item => item.type === type);
+                
+                if (existingItemIndex !== -1) {
+                    cart.items[existingItemIndex].quantity += quantity;
+                } else {
+                    cart.items.push({
+                        type: type,
+                        name: type === 'wassce' ? 'WAEC Checker' : 'BECE Checker',
+                        quantity: quantity,
+                        price: prices[type]
+                    });
+                }
+                
+                updateCart();
+            }
+
+            // Remove item from cart
+            function removeFromCart(type) {
+                cart.items = cart.items.filter(item => item.type !== type);
+                updateCart();
+            }
+
+            // Update cart display
+            function updateCart() {
+                // Calculate total with discounts
+                let totalQuantity = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+                let subtotal = cart.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+                
+                // Apply discounts
+                let discount = 0;
+                if (totalQuantity >= 10) {
+                    discount = subtotal - (19 * totalQuantity);
+                    discountMessageEl.textContent = `🎉 Discount applied! You're paying ₵19 per voucher for 10+ items (Saved ₵${discount.toFixed(2)})`;
+                    discountMessageEl.style.display = 'block';
+                } else if (totalQuantity >= 5) {
+                    discount = subtotal - (22 * totalQuantity);
+                    discountMessageEl.textContent = `🎉 Discount applied! You're paying ₵22 per voucher for 5-9 items (Saved ₵${discount.toFixed(2)})`;
+                    discountMessageEl.style.display = 'block';
+                } else {
+                    discountMessageEl.style.display = 'none';
+                }
+                
+                cart.total = totalQuantity >= 10 ? (19 * totalQuantity) : 
+                              totalQuantity >= 5 ? (22 * totalQuantity) : subtotal;
+                
+                // Update cart display
+                if (cart.items.length === 0) {
+                    cartItemsEl.innerHTML = '<p class="empty-cart-message">Your cart is empty</p>';
+                    checkoutBtn.style.display = 'none';
+                } else {
+                    cartItemsEl.innerHTML = '';
+                    cart.items.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'cart-item';
+                        itemEl.innerHTML = `
+                            <div class="cart-item-info">
+                                <div class="cart-item-quantity">${item.quantity}</div>
+                                <div>${item.name}</div>
+                            </div>
+                            <div>
+                                <span>₵${(item.quantity * item.price).toFixed(2)}</span>
+                                <span class="cart-item-remove" data-type="${item.type}"><i class="fas fa-times"></i></span>
+                            </div>
+                        `;
+                        cartItemsEl.appendChild(itemEl);
+                    });
+                    
+                    checkoutBtn.style.display = 'block';
+                }
+                
+                totalAmountEl.textContent = `₵${cart.total.toFixed(2)}`;
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.cart-item-remove').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        removeFromCart(this.dataset.type);
+                    });
+                });
+            }
+
+            // Checkout with Paystack
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.items.length === 0) return;
+                
+                const email = prompt('Please enter your email address for payment receipt:');
+                if (!email) return;
+                
+                const handler = PaystackPop.setup({
+                    key: 'pk_live_8c56d91cee6884d988dd8355981e0134ab72b94b',
+                    email: email,
+                    amount: cart.total * 100, // Paystack uses kobo (multiply by 100)
+                    currency: 'GHS',
+                    ref: 'AZZ-' + Math.floor(Math.random() * 1000000000) + 1,
+                    onClose: function() {
+                        alert('Payment window closed. If you completed payment, you will receive your vouchers shortly.');
+                    },
+                    callback: function(response) {
+                        // Payment successful
+                        showReceipt(response.reference);
+                    }
+                });
+                
+                handler.openIframe();
+            });
+
+            // Show receipt after payment
+            function showReceipt(reference) {
+                document.getElementById('reference-number').textContent = reference;
+                document.getElementById('paid-amount').textContent = `₵${cart.total.toFixed(2)}`;
+                referenceCopyInput.value = reference;
+                
+                const receiptItemsEl = document.getElementById('receipt-items');
+                receiptItemsEl.innerHTML = '';
+                
+                cart.items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.quantity} × ${item.name}`;
+                    receiptItemsEl.appendChild(li);
+                });
+                
+                // Set up WhatsApp button with reference
+                const whatsappMessage = `Hello Azz Internet Hub,\n\nI just made a payment for vouchers.\n\nReference Number: ${reference}`;
+                whatsappBtn.href = `https://wa.me/233598160732?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                receiptSection.style.display = 'block';
+                
+                // Clear cart
+                cart.items = [];
+                cart.total = 0;
+                updateCart();
+                
+                // Scroll to receipt
+                receiptSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Copy reference number to clipboard
+            copyBtn.addEventListener('click', function() {
+                referenceCopyInput.select();
+                document.execCommand('copy');
+                
+                // Show copied message
+                copiedMessage.style.display = 'block';
+                setTimeout(() => {
+                    copiedMessage.style.display = 'none';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
