@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TGMY71YN0"></script>
 <script>
@@ -11,72 +12,419 @@
   gtag('config', 'G-9TGMY71YN0');
 </script>
 
-  <meta charset="UTF-8">
-  <title>Latest Updates - Azz Internet Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News Update | Azz Internet Hub</title>
   <style>
-    /* Minimal inline CSS for animation */
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #001f3f;
+      color: #fff;
     }
 
-    .fade-in {
-      animation: fadeInUp 1s ease-in-out forwards;
+    header {
+      padding: 20px;
+      text-align: center;
+      background-color: #003366;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
-    .update-box:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(0, 0, 50, 0.2);
-      transition: all 0.3s ease-in-out;
+    .news-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
     }
+
+    .news-card {
+      background: #ffffff11;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00000022;
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+      transition: transform 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .news-images img {
+      height: 100px;
+      width: auto;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .news-images img:hover {
+      transform: scale(1.05);
+    }
+
+    .read-more {
+      color: #fff;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .hidden-content {
+      display: none;
+      margin-top: 10px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Modal Full Image Viewer */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #ccc;
+    }
+
+    .share-buttons {
+      margin-top: 15px;
+    }
+
+    .share-buttons button {
+      padding: 6px 12px;
+      background-color: #0055aa;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 8px;
+      font-size: 14px;
+    }
+
+    .share-buttons a {
+      text-decoration: none;
+      margin-right: 10px;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+
+    .share-buttons a:hover {
+      opacity: 0.7;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      text-align: center;
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+    }
+
+    .whatsapp { background-color: #25d366; }
+    .facebook { background-color: #3b5998; }
+    .twitter { background-color: #1da1f2; }
   </style>
+
+<!-- Adsense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7047398892858493"
      crossorigin="anonymous"></script>
+
+
 </head>
-<body style="margin: 0; font-family: Arial, sans-serif; background-color: #ffffff; color: #002147;">
+<body>
 
-  <!-- Header -->
-  <div style="background-color: #002147; padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Azz Internet Hub</h1>
-    <p style="color: white; font-size: 18px;">Latest News & Updates</p>
+<header>Comic-Section</header> 
+
+<section class="news-section">
+
+  <!-- NEWS ITEM 1 -->
+  <div class="news-card" id="news1">
+    <div class="news-images">
+      <img src="croc1.jpg" onclick="openModal(this.src)" />
+      <img src="croc2.jpg" onclick="openModal(this.src)" />
+ <img src="croc2.jpg" onclick="openModal(this.src)" />
+    </div>
+    <h2>The Crocodile Wey Taya Village Life Dey Beg for WiFi and ECG Light! 🔥🐊</h2>
+    <p>On a calm Tuesday afternoon at the riverside in somewhere in Volta region, something strange — and downright hilarious — happened. A full-grown crocodile, now famously known as Kwaku Croc, shocked local passengers when it calmly approached a red boat, climbed halfway onto it, and flashed what people described as a <strong>“smiling face.”</strong>...</p>
+    <span class="read-more" onclick="toggleContent(this)">Click here to read more</span>
+    <div class="hidden-content">
+      <p>Eyewitnesses thought it was a prank until the crocodile opened its mouth and started talking… in Pidgin.
+<br>
+<strong>“Make una no panic, I no dey bite again. I dey beg make una carry me go town. River life no dey favor me again. As I dey so, I just need small ECG light and maybe one WiFi password.”</strong>
+<br>
+<br>
+<strong>🐊 Crocodile Wey Get Vision</strong><br><br>
+
+Unlike the wild, aggressive predators seen in nature documentaries, this Croc came across more like a frustrated man from the village who just wants a better life. As he clung to the side of the boat, looking up at passengers with calm eyes and a crooked grin, he explained his reasons:
+
+<strong>“Since this year start, I never chop better food. All the fish don dey dodge me. My girlfriend, Abiba the Tilapia, lef me go follow one catfish for downstream. As for network, forget am. MTN never reach we riverbed. And worst of all, the river dey do dumsor now.”</strong>
+
+Passengers couldn’t believe their ears.
+
+
+<br>
+<br>
+<strong>😩 The Pain of River Life</strong><br><br>
+
+The crocodile claimed that river life is no longer what it used to be. According to him, things have changed drastically:
+<br>
+	•	The water is no longer clean — “pure water better pass this thing I dey swim inside.”
+	<br>
+	<br>
+	•	The fish are on strike — “dem dey do union meeting; nobody dey waka again.”
+	<br>
+	<br>
+	•	And the mosquitoes? — “dem dey bite me like say I be foreigner.”
+
+<br>
+<br>
+<strong>🚤 The Request</> <br><br>
+
+All the gentle Croc asked was for a small lift to town.
+
+<strong>“Just carry me go Accra or even Tamale sef. I hear say dem get fast internet and ECG no dey off light anyhow. I go find small job, maybe security for nightclub or I go open YouTube channel. ‘Life Under Water with Kwaku Croc’ – live interviews with catfish and turtles.”</strong>
+
+<br>
+<br>
+<strong>😳 Public Reaction</strong> <br><br>
+
+One elderly woman on the boat began praying loudly, believing it was a spirit or a cursed soul from the underworld.
+
+<strong>“This no be ordinary! Crocodile wey dey beg for ECG? Ah, end time signs be this o!” </strong>
+
+A local man, however, defended the croc:
+
+“Make we hear am. Even animal dey suffer for this economy. The croc sef dey find light and peace. Who no dey struggle?”
+
+
+
+<br>
+<br>
+<strong>📱 Viral Star in the Making</strong> <br><br>
+
+Since the incident, “Kwaku Croc” has gone viral across Ghanaian social media. Memes are flooding WhatsApp, TikTok, and Twitter with captions like:
+	<em>•	“When ECG take light and even crocodiles feel am…”</em>
+	<em>•	“Kwaku Croc say make Mahama or Bawumia show am better plan!”</em>
+	<!--<em>•	“2024 be like say croc go vote!”</em> -->
+
+
+<br>
+<br>
+<strong>🐊 Final Words from the Croc:</strong> <br><br>
+
+<strong>“I no be wild animal again. I be hustler. Life hard pass me. If I fit get one power bank and small jollof, I go manage. But una no dey reason we river boys.”</strong>
+
+<br>
+<br>
+<strong>📢 Wanna Know More?</strong>
+
+Visit <strong>www.azzinternehub.space</strong> for the full video, exclusive memes, and hilarious reactions from Ghanaians who watched the crocodile beg for light and internet like a true citizen.
+
+“Kwaku Croc — the only reptile wey understand economic hardship in his water!” 🐊🇬🇭
+</p>
+    </div>
+    <div class="share-buttons">
+      <button onclick="copyLink('news1')">📋 Copy Link</button>
+      <a href="#" onclick="shareSocial('news1', 'whatsapp')" title="Share on WhatsApp"><span class="icon whatsapp">📱</span></a>
+      <a href="#" onclick="shareSocial('news1', 'facebook')" title="Share on Facebook"><span class="icon facebook">f</span></a>
+      <a href="#" onclick="shareSocial('news1', 'twitter')" title="Share on Twitter"><span class="icon twitter">t</span></a>
+    </div>
   </div>
 
-  <!-- Main Content -->
-  <div style="padding: 30px; max-width: 900px; margin: auto;">
-    <h2 style="color: #002147;">What's New at Azz Internet Hub?</h2>
 
-    <div class="fade-in" style="margin-top: 20px; background-color: #f0f8ff; padding: 20px; border-left: 6px solid #002147; border-radius: 8px; margin-bottom: 25px;" class="update-box">
-      <h3 style="margin-top: 0;">University Forms 2025</h3>
-      <p>We are currently processing forms for all public universities in Ghana. Our team is ready to help with your application. Checklist is available now!</p>
+  <!-- NEWS ITEM 2 -- >
+  <div class="news-card" id="news2">
+    <div class="news-images">
+      <img src="images/news2a.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2b.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2c.jpg" onclick="openModal(this.src)" />
     </div>
-
-    <div class="fade-in" style="margin-top: 20px; background-color: #ffffff; padding: 20px; border-left: 6px solid #002147; border-radius: 8px; margin-bottom: 25px;" class="update-box">
-      <h3 style="margin-top: 0;">WASSCE Checker Restocked</h3>
-      <p>Fresh stock of WASSCE result checkers is available. Cost remains GHS 25 with instant delivery on WhatsApp or SMS.</p>
+    <h2>Special Offer on Sandals</h2>
+    <p>Our best-selling leather sandals are now going for only GHS 80. Come in-store or order online. This week only!</p>
+    <span class="read-more" onclick="toggleContent(this)">Click here to read more</span>
+    <div class="hidden-content">
+      <p>The sandals are handmade and durable. When you buy 3 or more pairs, delivery within Salaga and Kpembe is free! Visit TwinAzz shop section to browse full catalog.</p>
     </div>
-
-    <div class="fade-in" style="margin-top: 20px; background-color: #f0f8ff; padding: 20px; border-left: 6px solid #002147; border-radius: 8px; margin-bottom: 25px;" class="update-box">
-      <h3 style="margin-top: 0;">Graphic Design Orders</h3>
-      <p>Our design team is now available full-time. Get your flyers, posters, and school covers done quickly and professionally.</p>
-    </div>
-
-    <div class="fade-in" style="margin-top: 20px; background-color: #ffffff; padding: 20px; border-left: 6px solid #002147; border-radius: 8px; margin-bottom: 25px;" class="update-box">
-      <h3 style="margin-top: 0;">Coding Classes Ongoing</h3>
-      <p>New batch of beginner coding classes has started. It’s not too late to join and learn website building from scratch.</p>
-    </div>
-
-    <!-- Call to Action -->
-    <div style="margin-top: 40px; text-align: center;">
-      <a href="https://wa.me/233598160732" style="background-color: #002147; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-        Message Us for More Info
-      </a>
+    <div class="share-buttons">
+      <button onclick="copyLink('news2')">📋 Copy Link</button>
+      <a href="#" onclick="shareSocial('news2', 'whatsapp')" title="Share on WhatsApp"><span class="icon whatsapp">📱</span></a>
+      <a href="#" onclick="shareSocial('news2', 'facebook')" title="Share on Facebook"><span class="icon facebook">f</span></a>
+      <a href="#" onclick="shareSocial('news2', 'twitter')" title="Share on Twitter"><span class="icon twitter">t</span></a>
     </div>
   </div>
 
-  <!-- Footer -->
-  <div style="background-color: #002147; color: white; text-align: center; padding: 15px; margin-top: 40px;">
-    &copy; 2025 Azz Internet Hub | Stay Updated, Stay Ahead
+<!-- ITEM 3–>
+
+  <div class="news-card" id="news2">
+    <div class="news-images">
+      <img src="images/news2a.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2b.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2c.jpg" onclick="openModal(this.src)" />
+    </div>
+    <h2>Special Offer on Sandals</h2>
+    <p>Our best-selling leather sandals are now going for only GHS 80. Come in-store or order online. This week only!</p>
+    <span class="read-more" onclick="toggleContent(this)">Click here to read more</span>
+    <div class="hidden-content">
+      <p>The sandals are handmade and durable. When you buy 3 or more pairs, delivery within Salaga and Kpembe is free! Visit TwinAzz shop section to browse full catalog.</p>
+    </div>
+    <div class="share-buttons">
+      <button onclick="copyLink('news2')">📋 Copy Link</button>
+      <a href="#" onclick="shareSocial('news2', 'whatsapp')" title="Share on WhatsApp"><span class="icon whatsapp">📱</span></a>
+      <a href="#" onclick="shareSocial('news2', 'facebook')" title="Share on Facebook"><span class="icon facebook">f</span></a>
+      <a href="#" onclick="shareSocial('news2', 'twitter')" title="Share on Twitter"><span class="icon twitter">t</span></a>
+    </div>
   </div>
+
+
+<!-- ITEM 4–>
+
+  <div class="news-card" id="news2">
+    <div class="news-images">
+      <img src="images/news2a.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2b.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2c.jpg" onclick="openModal(this.src)" />
+    </div>
+    <h2>Special Offer on Sandals</h2>
+    <p>Our best-selling leather sandals are now going for only GHS 80. Come in-store or order online. This week only!</p>
+    <span class="read-more" onclick="toggleContent(this)">Click here to read more</span>
+    <div class="hidden-content">
+      <p>The sandals are handmade and durable. When you buy 3 or more pairs, delivery within Salaga and Kpembe is free! Visit TwinAzz shop section to browse full catalog.</p>
+    </div>
+    <div class="share-buttons">
+      <button onclick="copyLink('news2')">📋 Copy Link</button>
+      <a href="#" onclick="shareSocial('news2', 'whatsapp')" title="Share on WhatsApp"><span class="icon whatsapp">📱</span></a>
+      <a href="#" onclick="shareSocial('news2', 'facebook')" title="Share on Facebook"><span class="icon facebook">f</span></a>
+      <a href="#" onclick="shareSocial('news2', 'twitter')" title="Share on Twitter"><span class="icon twitter">t</span></a>
+    </div>
+  </div>
+
+
+
+<!-- ITEM 5–>
+  <div class="news-card" id="news2">
+    <div class="news-images">
+      <img src="images/news2a.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2b.jpg" onclick="openModal(this.src)" />
+      <img src="images/news2c.jpg" onclick="openModal(this.src)" />
+    </div>
+    <h2>Special Offer on Sandals</h2>
+    <p>Our best-selling leather sandals are now going for only GHS 80. Come in-store or order online. This week only!</p>
+    <span class="read-more" onclick="toggleContent(this)">Click here to read more</span>
+    <div class="hidden-content">
+      <p>The sandals are handmade and durable. When you buy 3 or more pairs, delivery within Salaga and Kpembe is free! Visit TwinAzz shop section to browse full catalog.</p>
+    </div>
+    <div class="share-buttons">
+      <button onclick="copyLink('news2')">📋 Copy Link</button>
+      <a href="#" onclick="shareSocial('news2', 'whatsapp')" title="Share on WhatsApp"><span class="icon whatsapp">📱</span></a>
+      <a href="#" onclick="shareSocial('news2', 'facebook')" title="Share on Facebook"><span class="icon facebook">f</span></a>
+      <a href="#" onclick="shareSocial('news2', 'twitter')" title="Share on Twitter"><span class="icon twitter">t</span></a>
+    </div>
+  </div>
+
+
+
+
+
+</section>
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg" />
+</div>
+
+<script>
+  function toggleContent(btn) {
+    const hiddenContent = btn.nextElementSibling;
+    hiddenContent.style.display = hiddenContent.style.display === "block" ? "none" : "block";
+    btn.innerText = hiddenContent.style.display === "block" ? "Hide details" : "Click here to read more";
+  }
+
+  function openModal(src) {
+    document.getElementById("modalImg").src = src;
+    document.getElementById("imageModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+
+  function copyLink(id) {
+    const baseUrl = window.location.href.split('#')[0];
+    const fullLink = `${baseUrl}#${id}`;
+    navigator.clipboard.writeText(fullLink).then(() => {
+      alert("Link copied to clipboard!");
+    });
+  }
+
+  function shareSocial(id, platform) {
+    const baseUrl = window.location.href.split('#')[0];
+    const shareUrl = `${baseUrl}#${id}`;
+    const encoded = encodeURIComponent(shareUrl);
+
+    let url = "";
+    switch (platform) {
+      case "whatsapp":
+        url = `https://wa.me/?text=${encoded}`;
+        break;
+      case "facebook":
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encoded}`;
+        break;
+      case "twitter":
+        url = `https://twitter.com/intent/tweet?url=${encoded}&text=Check%20this%20news%20on%20Azz%20Internet%20Hub`;
+        break;
+    }
+
+    window.open(url, '_blank');
+  }
+</script>
 
 </body>
 </html>
