@@ -15,21 +15,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>News Update | Azz Internet Hub</title>
-  <style>
+   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #001f3f;
-      color: #fff;
+      background-color: white;
+      color: #111; /* Dark text */
     }
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       padding: 20px;
       text-align: center;
       background-color: #003366;
       font-size: 2rem;
       font-weight: bold;
       letter-spacing: 1px;
+      color: white;
     }
 
     .news-section {
@@ -41,15 +45,16 @@
     }
 
     .news-card {
-      background: #ffffff11;
+      background: #f9f9f9;
       border-radius: 10px;
-      box-shadow: 0 0 20px #00000022;
+      box-shadow: 0 0 15px #00000011;
       max-width: 600px;
       width: 100%;
       padding: 20px;
       transition: transform 0.3s;
       cursor: pointer;
       position: relative;
+      color: #111; /* Ensure card text is dark */
     }
 
     .news-card:hover {
@@ -76,7 +81,7 @@
     }
 
     .read-more {
-      color: #fff;
+      color: #003366;
       text-decoration: underline;
       cursor: pointer;
       font-weight: bold;
@@ -88,6 +93,7 @@
       display: none;
       margin-top: 10px;
       animation: fadeIn 0.5s ease-in-out;
+      color: #333;
     }
 
     @keyframes fadeIn {
@@ -99,7 +105,7 @@
     .modal {
       display: none;
       position: fixed;
-      z-index: 999;
+      z-index: 9999;
       padding-top: 60px;
       left: 0;
       top: 0;
@@ -115,6 +121,7 @@
       max-width: 90%;
       max-height: 90%;
       border-radius: 10px;
+      box-shadow: 0 0 30px #000000bb;
     }
 
     .close {
@@ -125,6 +132,7 @@
       font-size: 40px;
       font-weight: bold;
       cursor: pointer;
+      user-select: none;
     }
 
     .close:hover {
@@ -175,6 +183,7 @@
 <!-- Google adaense-->
  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7047398892858493"
      crossorigin="anonymous"></script> 
+
 </head>
 <body>
 
@@ -198,7 +207,7 @@
 <strong>“Make una no panic, I no dey bite again. I dey beg make una carry me go town. River life no dey favor me again. As I dey so, I just need small ECG light and maybe one WiFi password.”</strong>
 <br>
 <br>
-<strong>🐊 Crocodile Wey Get Vision</strong><br><br>
+<strong>🐊 Crocodile Wey Get Vision</strong><br>
 
 Unlike the wild, aggressive predators seen in nature documentaries, this Croc came across more like a frustrated man from the village who just wants a better life. As he clung to the side of the boat, looking up at passengers with calm eyes and a crooked grin, he explained his reasons:
 
@@ -209,7 +218,7 @@ Passengers couldn’t believe their ears.
 
 <br>
 <br>
-<strong>😩 The Pain of River Life</strong><br><br>
+<strong>😩 The Pain of River Life</strong><br>
 
 The crocodile claimed that river life is no longer what it used to be. According to him, things have changed drastically:
 <br>
@@ -223,7 +232,7 @@ The crocodile claimed that river life is no longer what it used to be. According
 
 <br>
 <br>
-<strong>🚤 The Request</> <br><br>
+<strong>🚤 The Request</> <br>
 
 All the gentle Croc asked was for a small lift to town.
 
@@ -231,7 +240,7 @@ All the gentle Croc asked was for a small lift to town.
 
 <br>
 <br>
-<strong>😳 Public Reaction</strong> <br><br>
+<strong>😳 Public Reaction</strong> <br>
 
 One elderly woman on the boat began praying loudly, believing it was a spirit or a cursed soul from the underworld.
 
@@ -245,7 +254,7 @@ A local man, however, defended the croc:
 
 <br>
 <br>
-<strong>📱 Viral Star in the Making</strong> <br><br>
+<strong>📱 Viral Star in the Making</strong> <br>
 
 Since the incident, “Kwaku Croc” has gone viral across Ghanaian social media. Memes are flooding WhatsApp, TikTok, and Twitter with captions like:
 	<em>•	“When ECG take light and even crocodiles feel am…”</em>
@@ -255,7 +264,7 @@ Since the incident, “Kwaku Croc” has gone viral across Ghanaian social media
 
 <br>
 <br>
-<strong>🐊 Final Words from the Croc:</strong> <br><br>
+<strong>🐊 Final Words from the Croc:</strong> <br>
 
 <strong>“I no be wild animal again. I be hustler. Life hard pass me. If I fit get one power bank and small jollof, I go manage. But una no dey reason we river boys.”</strong>
 
@@ -277,18 +286,69 @@ Visit <strong>www.azzinternehub.space</strong> for the full video, exclusive mem
   </div>
 
 
-  <!-- NEWS ITEM 2 -- >
+  <!-- NEWS ITEM 2 -->
   <div class="news-card" id="news2">
     <div class="news-images">
-      <img src="images/news2a.jpg" onclick="openModal(this.src)" />
-      <img src="images/news2b.jpg" onclick="openModal(this.src)" />
-      <img src="images/news2c.jpg" onclick="openModal(this.src)" />
+      <img src="school1.jpg" onclick="openModal(this.src)" />
+      <img src="school2.jpg" onclick="openModal(this.src)" />
+      <img src="school3.jpg" onclick="openModal(this.src)" />
     </div>
-    <h2>Special Offer on Sandals</h2>
-    <p>Our best-selling leather sandals are now going for only GHS 80. Come in-store or order online. This week only!</p>
+    <h2>SHS School Selection Guidelines for 2025 Released</h2>
+    <p>The Ministry of Education has released the official guidelines for selecting Senior High Schools (SHS) for the 2025 academic year. Parents, guardians, and Junior High School (JHS) students are urged to take note of the following rules to ensure a smooth and successful placement process.</p>
     <span class="read-more" onclick="toggleContent(this)">Click here to read more</span>
     <div class="hidden-content">
-      <p>The sandals are handmade and durable. When you buy 3 or more pairs, delivery within Salaga and Kpembe is free! Visit TwinAzz shop section to browse full catalog.</p>
+      <p><strong>1. Number of School Choices</strong>
+
+Students are required to choose a total of seven (7) schools, divided as follows:<br>
+	•	Five (5) main choices, ranked by preference.<br><br>
+	•	Two (2) alternative choices, selected from Appendix 3, which serve as backups if a student is not placed in their main selections.
+	
+	<br>
+	<br>
+	<br>
+
+2. Category Rules
+	•	Category A: Only one (1) school can be selected.<br><br>
+	•	Category B: A maximum of two (2) schools can be chosen—one as a boarding and one as a day option.<br><br>
+	•	Category C: Up to five (5) schools can be selected depending on earlier choices, including both boarding and day options.
+
+Boarding School Limitation
+
+Students can select a maximum of three (3) boarding schools among their first five choices.
+
+   <br>
+	<br>
+	<br>
+
+3. Inclusion of TVET Institutions
+
+Technical and Vocational Education and Training (TVET) schools can be selected from any of the three categories—A, B, or C—using the same rules applied to general schools.
+
+   <br>
+	<br>
+	<br>
+
+4. Submission of the Selection Form
+	•	The selection form must be signed by a parent or guardian.<br><br>
+	•	Forms should be submitted to the student’s JHS teacher.<br><br>
+	•	Parents are required to keep a copy of the submitted form for reference.
+	
+	<br>
+	<br>
+	<br>
+
+5. Important Notes
+	•	Selections are final—no changes are allowed after submission.<br><br>
+	•	Parents are encouraged to play an active role in the decision-making process.<br><br>
+	•	School choices should be guided by:<br><br>
+	•	The student’s academic performance.<br><br>
+	•	Their chances of automatic placement based on competition and grades.
+	
+	<br>
+	<br>
+	<br>
+
+Let us work together to guide our children toward a brighter educational future. Smart, informed decisions now can lead to successful school placements later.</p>
     </div>
     <div class="share-buttons">
       <button onclick="copyLink('news2')">📋 Copy Link</button>
