@@ -1,777 +1,613 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TGMY71YN0"></script>
-
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9TGMY71YN0');
-</script> 
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azz Internet Hub - Voucher Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Azz Internet Hub - Premium E-Voucher Terminal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://js.paystack.co/v2/inline.js"></script>
     <style>
         :root {
-            --deep-blue: #0a2463;
-            --white: #ffffff;
-            --light-blue: #3e92cc;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --deep-navy: #041E42;
+            --royal-blue: #0A2540;
+            --accent-gold: #F2A900;
+            --pure-white: #FFFFFF;
+            --muted-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+            --text-dark: #1E293B;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--muted-bg);
+            color: var(--text-dark);
+            background-image: radial-gradient(rgba(4, 30, 66, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+            padding-bottom: 3rem;
         }
 
-        .voucher-portal {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .portal-header {
+        header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--royal-blue) 100%);
+            color: var(--pure-white);
+            padding: 2.5rem 1rem;
             text-align: center;
-            margin-bottom: 3rem;
+            border-bottom: 4px solid var(--accent-gold);
             position: relative;
         }
 
-        .portal-header img {
-            max-height: 80px;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .portal-header h1 {
-            color: var(--deep-blue);
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        header p {
+            font-size: 1rem;
+            color: #94A3B8;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        main {
+            max-width: 650px;
+            margin: -2rem auto 0 auto;
+            padding: 0 1rem;
             position: relative;
-            display: inline-block;
+            z-index: 10;
         }
 
-        .portal-header h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--light-blue);
-            border-radius: 2px;
+        .card {
+            background: var(--pure-white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(4, 30, 66, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
         }
 
-        .portal-header p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .voucher-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .voucher-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .voucher-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .voucher-header {
-            background: var(--deep-blue);
-            color: var(--white);
-            padding: 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .voucher-header h3 {
+        h2 {
+            color: var(--deep-navy);
+            margin-bottom: 2rem;
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .voucher-header .price {
-            font-size: 2rem;
+            text-align: center;
             font-weight: 700;
         }
 
-        .voucher-body {
-            padding: 2rem;
-        }
-
-        .voucher-features {
-            margin-bottom: 1.5rem;
-        }
-
-        .voucher-features li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .voucher-features i {
-            color: var(--deep-blue);
-            margin-right: 0.5rem;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1.5rem 0;
-        }
-
-        .quantity-btn {
-            background: var(--deep-blue);
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .quantity-btn:hover {
-            background: var(--light-blue);
-        }
-
-        .quantity-input {
-            width: 50px;
-            text-align: center;
-            margin: 0 1rem;
-            padding: 0.3rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .add-to-cart {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--deep-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .add-to-cart:hover {
-            background: var(--light-blue);
-            transform: translateY(-2px);
-        }
-
-        .cart-section {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-top: 3rem;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-header h2 {
-            color: var(--deep-blue);
-        }
-
-        .cart-items {
+        .checker-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
             margin-bottom: 2rem;
         }
 
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-item-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .cart-item-quantity {
-            background: var(--deep-blue);
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 0.8rem;
-        }
-
-        .cart-item-remove {
-            color: #ff6b6b;
-            cursor: pointer;
-            margin-left: 1rem;
-            transition: var(--transition);
-        }
-
-        .cart-item-remove:hover {
-            transform: scale(1.2);
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid var(--deep-blue);
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .discount-message {
-            color: #27ae60;
-            font-weight: 500;
-            margin: 1rem 0;
-            text-align: right;
-            display: none;
-        }
-
-        .checkout-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-top: 1.5rem;
-        }
-
-        .checkout-btn:hover {
-            background: #2ecc71;
-            transform: translateY(-2px);
-        }
-
-        .receipt-section {
-            display: none;
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-top: 2rem;
+        .type-option {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
             text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .receipt-section h2 {
-            color: var(--deep-blue);
-            margin-bottom: 1rem;
-        }
-
-        .receipt-details {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .receipt-details p {
-            margin-bottom: 0.5rem;
-        }
-
-        .highlight {
-            font-weight: 600;
-            color: var(--deep-blue);
-        }
-
-        .whatsapp-actions {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #25D366;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-
-        .whatsapp-btn i {
-            font-size: 1.2rem;
-            margin-right: 0.5rem;
-        }
-
-        .or-divider {
-            margin: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            color: #666;
+            background: var(--pure-white);
         }
 
-        .or-divider::before,
-        .or-divider::after {
-            content: "";
+        .type-option i {
+            font-size: 2.2rem;
+            color: var(--deep-navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .type-option p {
+            font-weight: 700;
+            color: var(--royal-blue);
+            font-size: 1rem;
+        }
+
+        .type-option input[type="radio"] {
             position: absolute;
-            top: 50%;
-            width: 30%;
-            height: 1px;
-            background: #ddd;
+            opacity: 0;
         }
 
-        .or-divider::before {
-            left: 0;
+        .type-option:hover {
+            border-color: var(--deep-navy);
+            transform: translateY(-2px);
         }
 
-        .or-divider::after {
-            right: 0;
+        .type-option.selected {
+            border-color: var(--deep-navy);
+            background: rgba(4, 30, 66, 0.02);
+            box-shadow: 0 4px 12px rgba(4, 30, 66, 0.06);
         }
 
-        .reference-copy {
+        .type-option.selected::after {
+            content: "\f058";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: var(--deep-navy);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            background-color: var(--muted-bg);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--deep-navy);
+            background-color: var(--pure-white);
+            box-shadow: 0 0 0 4px rgba(4, 30, 66, 0.05);
+        }
+
+        /* Tier Promo Badges */
+        .promo-notice {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .price-tag {
+            background: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
             display: flex;
-            margin: 0 auto;
-            max-width: 400px;
+            flex-direction: column;
+            gap: 4px;
+            border-left: 6px solid var(--accent-gold);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        #reference-copy-input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px 0 0 8px;
-            font-family: inherit;
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
-        #copy-btn {
-            background: var(--deep-blue);
-            color: white;
+        .price-row span:first-child {
+            font-size: 0.95rem;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .price-amount {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+        }
+
+        .unit-rate-indicator {
+            font-size: 0.8rem;
+            color: #94A3B8;
+            align-self: flex-end;
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--royal-blue) 100%);
+            color: var(--pure-white);
             border: none;
-            padding: 0 1.2rem;
-            border-radius: 0 8px 8px 0;
+            padding: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(4, 30, 66, 0.15);
+            transition: all 0.2s ease;
         }
 
-        #copy-btn:hover {
-            background: var(--light-blue);
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(4, 30, 66, 0.25);
         }
 
-        .copied-message {
-            color: #27ae60;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+        .voucher-display {
+            margin-top: 2.5rem;
             display: none;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .voucher-display h3 {
+            color: var(--deep-navy);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .pulse {
-            animation: pulse 2s infinite;
+        .vouchers-wrapper {
+            max-height: 350px;
+            overflow-y: auto;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: #FAFAFA;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .voucher-text-block {
+            background: var(--pure-white);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--deep-navy);
+            border-radius: 6px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.05rem;
+            font-weight: 700;
+            white-space: pre-wrap;
+            color: #0F172A;
+            line-height: 1.5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .voucher-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .portal-header h1 {
-                font-size: 2rem;
-            }
-            
-            .reference-copy {
-                flex-direction: column;
-            }
-            
-            #reference-copy-input {
-                border-radius: 8px 8px 0 0;
-            }
-            
-            #copy-btn {
-                border-radius: 0 0 8px 8px;
-                padding: 0.5rem;
-            }
+        .voucher-text-block:last-child {
+            margin-bottom: 0;
         }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.85rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-download {
+            background-color: var(--accent-gold);
+            color: var(--deep-navy);
+            border: none;
+        }
+
+        .btn-download:hover {
+            background-color: #E09B00;
+        }
+
+        .btn-portal {
+            background-color: transparent;
+            border: 2px solid var(--deep-navy);
+            color: var(--deep-navy);
+        }
+
+        .btn-portal:hover {
+            background-color: rgba(4, 30, 66, 0.04);
+        }
+
+        .support-box {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--royal-blue);
+        }
+
+        .support-box a {
+            color: var(--deep-navy);
+            text-decoration: none;
+            font-weight: 800;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 2px;
+            margin-left: 4px;
+        }
+
+        .loader-overlay {
+            position: fixed;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(4, 30, 66, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            color: var(--pure-white);
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="voucher-portal">
-        <div class="portal-header">
-            <!-- Replace with your logo path -->
-            <img src="your-logo.png" alt="Azz Internet Hub Logo">
-            <h1>WAEC/BECE Voucher Portal</h1>
-            <p>Purchase your examination checkers securely and receive them instantly via WhatsApp after payment <br><br>
-<br>
-1 CHECKER IS 25 CEDIS
-<br>
-5 CHECKERS IS 23 CEDIS EACH
-<br>
-10 or more is 19 CEDIS EACH
-<br></p>
-        </div>
 
-        <div class="voucher-container">
-            <div class="voucher-card">
-                <div class="voucher-header">
-                    <h3>WAEC Checker</h3>
-                    <div class="price">₵25</div>
-                </div>
-                <div class="voucher-body">
-                    <ul class="voucher-features">
-                        <li><i class="fas fa-check-circle"></i> Valid for WASSCE/NovDec results</li>
-                        <li><i class="fas fa-check-circle"></i> Instant delivery after payment</li>
-                        <li><i class="fas fa-check-circle"></i> Secure and reliable</li>
-                    </ul>
-                    <div class="quantity-control">
-                        <button class="quantity-btn minus" data-type="wassce">-</button>
-                        <input type="number" class="quantity-input" data-type="wassce" value="0" min="0">
-                        <button class="quantity-btn plus" data-type="wassce">+</button>
+    <header>
+        <h1>AZZ INTERNET HUB</h1>
+        <p>Official Verification & Instant E-Voucher Terminal</p>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Select Premium Service Category</h2>
+            <form id="checkerForm">
+                
+                <div class="checker-selector">
+                    <div class="type-option selected" onclick="selectType(this, 'WASSCE')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <p>WASSCE Checker</p>
+                        <input type="radio" name="checkerType" value="WASSCE" checked>
                     </div>
-                    <button class="add-to-cart" data-type="wassce">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="voucher-card">
-                <div class="voucher-header">
-                    <h3>BECE Checker</h3>
-                    <div class="price">₵25</div>
-                </div>
-                <div class="voucher-body">
-                    <ul class="voucher-features">
-                        <li><i class="fas fa-check-circle"></i> Valid for BECE results</li>
-                        <li><i class="fas fa-check-circle"></i> Instant delivery after payment</li>
-                        <li><i class="fas fa-check-circle"></i> Secure and reliable</li>
-                    </ul>
-                    <div class="quantity-control">
-                        <button class="quantity-btn minus" data-type="bece">-</button>
-                        <input type="number" class="quantity-input" data-type="bece" value="0" min="0">
-                        <button class="quantity-btn plus" data-type="bece">+</button>
+                    <div class="type-option" onclick="selectType(this, 'BECE')">
+                        <i class="fas fa-book-open"></i>
+                        <p>BECE Checker</p>
+                        <input type="radio" name="checkerType" value="BECE">
                     </div>
-                    <button class="add-to-cart" data-type="bece">Add to Cart</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="voucherQuantity">Purchase Quantity</label>
+                    <select id="voucherQuantity" onchange="calculateTieredPricing()">
+                        <option value="1">1 Token</option>
+                        <option value="2">2 Tokens</option>
+                        <option value="3">3 Tokens</option>
+                        <option value="4">4 Tokens (Bulk Discount)</option>
+                        <option value="5">5 Tokens (Wholesale Discount)</option>
+                        <option value="6">6 Tokens</option>
+                        <option value="7">7 Tokens</option>
+                        <option value="8">8 Tokens</option>
+                        <option value="9">9 Tokens</option>
+                        <option value="10">10 Tokens</option>
+                    </select>
+                    <span class="promo-notice">* Bulk pricing drops automatically down to GH₵ 18.50 based on volume!</span>
+                </div>
+
+                <div class="price-tag">
+                    <div class="price-row">
+                        <span>Total Cost Summary:</span>
+                        <span class="price-amount" id="costSummary">GH₵ 25.00</span>
+                    </div>
+                    <div class="unit-rate-indicator" id="unitRateSummary">Rate applied: GH₵ 25.00 per voucher</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentName">Client Full Name</label>
+                    <input type="text" id="studentName" required placeholder="Aziz Zaroo Kamal">
+                </div>
+
+                <div class="form-group">
+                    <label for="studentEmail">Email Delivery Address</label>
+                    <input type="email" id="studentEmail" required placeholder="yourname@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="studentPhone">Active Contact Number</label>
+                    <input type="tel" id="studentPhone" required placeholder="024XXXXXXX">
+                </div>
+
+                <button type="button" onclick="startPayment()" class="btn-submit">
+                    <i class="fas fa-shield-alt"></i> Complete Secure Purchase
+                </button>
+            </form>
+
+            <div class="voucher-display" id="voucherDisplay">
+                <h3><i class="fas fa-ticket"></i> Issued Vouchers</h3>
+                <div class="vouchers-wrapper" id="vouchersContainer"></div>
+                
+                <div class="action-buttons">
+                    <button class="btn-action btn-download" onclick="downloadVouchersFile()">
+                        <i class="fas fa-download"></i> Save as Text File
+                    </button>
+                    <a href="https://ghana.waecdirect.org" target="_blank" class="btn-action btn-portal">
+                        <i class="fas fa-external-link-alt"></i> Access WAEC Site
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="cart-section">
-            <div class="cart-header">
-                <h2>Your Order Summary</h2>
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="total-amount">₵0.00</span>
-                </div>
-            </div>
-            <div class="discount-message" id="discount-message"></div>
-            <div class="cart-items" id="cart-items">
-                <!-- Cart items will be added here dynamically -->
-                <p class="empty-cart-message">Your cart is empty</p>
-            </div>
-            <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        <div class="support-box">
+            <p>Encountered an issue? Contact our helpdesk:<a href="tel:+233598160732"><i class="fas fa-phone-alt"></i> 059 816 0732</a></p>
         </div>
+    </main>
 
-        <div class="receipt-section" id="receipt-section">
-            <h2>Payment Successful! 🎉</h2>
-            <p>Thank you for your purchase. Your voucher details will be sent to you shortly.</p>
-            
-            <div class="receipt-details">
-                <p><span class="highlight">Order Reference:</span> <span id="reference-number"></span></p>
-                <p><span class="highlight">Total Paid:</span> <span id="paid-amount"></span></p>
-                <p><span class="highlight">Items Purchased:</span></p>
-                <ul id="receipt-items"></ul>
-            </div>
-            
-            <div class="whatsapp-actions">
-                <a id="whatsapp-btn" class="whatsapp-btn pulse" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Send Reference via WhatsApp
-                </a>
-                <p class="or-divider">or copy manually:</p>
-                <div class="reference-copy">
-                    <input type="text" id="reference-copy-input" readonly>
-                    <button id="copy-btn"><i class="far fa-copy"></i> Copy</button>
-                </div>
-                <p class="copied-message" id="copied-message">Copied to clipboard!</p>
-            </div>
-        </div>
+    <div class="loader-overlay" id="loader">
+        <div class="spinner"></div>
+        <p style="margin-top: 20px; font-weight: 700; letter-spacing: 0.5px;" id="loaderText">Securing transaction...</p>
     </div>
 
-    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cart state
-            const cart = {
-                items: [],
-                total: 0
-            };
+        const PAYSTACK_PUBLIC_KEY = "pk_test_5ac575deecd34c69d0e21584d36d46df951b0224"; 
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3eex5UEvZHTFbECL9q_DaSPqACsOOE5mP9TjEjUGL2P-UtvN7CiQfTEyLB9C6sV2q/exec"; 
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xeoavpld";
+        
+        let compiledVouchersText = ""; 
 
-            // DOM elements
-            const cartItemsEl = document.getElementById('cart-items');
-            const totalAmountEl = document.getElementById('total-amount');
-            const checkoutBtn = document.getElementById('checkout-btn');
-            const receiptSection = document.getElementById('receipt-section');
-            const discountMessageEl = document.getElementById('discount-message');
-            const whatsappBtn = document.getElementById('whatsapp-btn');
-            const referenceCopyInput = document.getElementById('reference-copy-input');
-            const copyBtn = document.getElementById('copy-btn');
-            const copiedMessage = document.getElementById('copied-message');
+        function selectType(element, typeValue) {
+            document.querySelectorAll('.type-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            element.querySelector('input[type="radio"]').checked = true;
+        }
 
-            // Product prices
-            const prices = {
-                wassce: 25,
-                bece: 25
-            };
+        // Live Dynamic Multi-Tiered Pricing Matrix Calculation
+        function calculateTieredPricing() {
+            const qty = parseInt(document.getElementById('voucherQuantity').value);
+            let unitPrice = 25.0;
 
-            // Quantity controls
-            document.querySelectorAll('.quantity-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const type = this.dataset.type;
-                    const input = document.querySelector(`.quantity-input[data-type="${type}"]`);
-                    let value = parseInt(input.value);
-                    
-                    if (this.classList.contains('plus')) {
-                        value++;
-                    } else {
-                        value = Math.max(0, value - 1);
-                    }
-                    
-                    input.value = value;
-                });
+            if (qty === 4) {
+                unitPrice = 23.0;
+            } else if (qty >= 5 && qty <= 10) {
+                unitPrice = 18.5;
+            }
+
+            const totalCost = qty * unitPrice;
+            
+            // Format to 2 decimal places to handle the .50 cleaner
+            document.getElementById('costSummary').innerText = `GH₵ ${totalCost.toFixed(2)}`;
+            document.getElementById('unitRateSummary').innerText = `Rate applied: GH₵ ${unitPrice.toFixed(2)} per voucher`;
+            
+            return totalCost;
+        }
+
+        function startPayment() {
+            const form = document.getElementById('checkerForm');
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const email = document.getElementById('studentEmail').value;
+            const qty = parseInt(document.getElementById('voucherQuantity').value);
+            
+            // Fetch precise cost calculated by matrix
+            const totalGHS = calculateTieredPricing();
+            const totalAmountPesewas = Math.round(totalGHS * 100); 
+
+            const paystack = new PaystackPop();
+            paystack.newTransaction({
+                key: PAYSTACK_PUBLIC_KEY,
+                email: email,
+                amount: totalAmountPesewas,
+                currency: "GHS",
+                onSuccess: (transaction) => {
+                    processVoucherDistribution(transaction.reference, qty, totalGHS);
+                },
+                onCancel: () => {
+                    alert("Transaction terminated by client.");
+                }
             });
+        }
 
-            // Add to cart functionality
-            document.querySelectorAll('.add-to-cart').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const type = this.dataset.type;
-                    const input = document.querySelector(`.quantity-input[data-type="${type}"]`);
-                    const quantity = parseInt(input.value);
-                    
-                    if (quantity > 0) {
-                        addToCart(type, quantity);
-                        input.value = 0;
-                    }
-                });
-            });
-
-            // Add item to cart
-            function addToCart(type, quantity) {
-                const existingItemIndex = cart.items.findIndex(item => item.type === type);
-                
-                if (existingItemIndex !== -1) {
-                    cart.items[existingItemIndex].quantity += quantity;
-                } else {
-                    cart.items.push({
-                        type: type,
-                        name: type === 'wassce' ? 'WAEC Checker' : 'BECE Checker',
+        async function processVoucherDistribution(referenceId, quantity, totalPaid) {
+            const checkerType = document.querySelector('input[name="checkerType"]:checked').value;
+            const name = document.getElementById('studentName').value;
+            const email = document.getElementById('studentEmail').value;
+            const phone = document.getElementById('studentPhone').value;
+            
+            const loader = document.getElementById('loader');
+            const loaderText = document.getElementById('loaderText');
+            
+            loader.style.display = 'flex';
+            loaderText.innerText = "Authorizing transaction token...";
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    body: JSON.stringify({ 
+                        checkerType: checkerType,
                         quantity: quantity,
-                        price: prices[type]
-                    });
-                }
+                        paystackReference: referenceId
+                    })
+                });
                 
-                updateCart();
-            }
+                const result = await response.json();
+                
+                if (result.result === 'success') {
+                    const container = document.getElementById('vouchersContainer');
+                    container.innerHTML = ""; 
+                    compiledVouchersText = ""; 
 
-            // Remove item from cart
-            function removeFromCart(type) {
-                cart.items = cart.items.filter(item => item.type !== type);
-                updateCart();
-            }
+                    result.vouchers.forEach((v, index) => {
+                        const templateText = `${checkerType}-CHECKER\nSERIAL NO: ${v.serial}\nPIN: ${v.pin}\nLink - ${result.link}`;
+                        
+                        compiledVouchersText += `--- Voucher ${index + 1} ---\n${templateText}\n\n`;
 
-            // Update cart display
-            function updateCart() {
-                // Calculate total with discounts
-                let totalQuantity = cart.items.reduce((sum, item) => sum + item.quantity, 0);
-                let subtotal = cart.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
-                
-                // Apply discounts
-                let discount = 0;
-                if (totalQuantity >= 10) {
-                    discount = subtotal - (19 * totalQuantity);
-                    discountMessageEl.textContent = `🎉 Discount applied! You're paying ₵19 per voucher for 10+ items (Saved ₵${discount.toFixed(2)})`;
-                    discountMessageEl.style.display = 'block';
-                } else if (totalQuantity >= 5) {
-                    discount = subtotal - (22 * totalQuantity);
-                    discountMessageEl.textContent = `🎉 Discount applied! You're paying ₵22 per voucher for 5-9 items (Saved ₵${discount.toFixed(2)})`;
-                    discountMessageEl.style.display = 'block';
-                } else {
-                    discountMessageEl.style.display = 'none';
-                }
-                
-                cart.total = totalQuantity >= 10 ? (19 * totalQuantity) : 
-                              totalQuantity >= 5 ? (22 * totalQuantity) : subtotal;
-                
-                // Update cart display
-                if (cart.items.length === 0) {
-                    cartItemsEl.innerHTML = '<p class="empty-cart-message">Your cart is empty</p>';
-                    checkoutBtn.style.display = 'none';
-                } else {
-                    cartItemsEl.innerHTML = '';
-                    cart.items.forEach(item => {
-                        const itemEl = document.createElement('div');
-                        itemEl.className = 'cart-item';
-                        itemEl.innerHTML = `
-                            <div class="cart-item-info">
-                                <div class="cart-item-quantity">${item.quantity}</div>
-                                <div>${item.name}</div>
-                            </div>
-                            <div>
-                                <span>₵${(item.quantity * item.price).toFixed(2)}</span>
-                                <span class="cart-item-remove" data-type="${item.type}"><i class="fas fa-times"></i></span>
-                            </div>
-                        `;
-                        cartItemsEl.appendChild(itemEl);
+                        const block = document.createElement('div');
+                        block.className = 'voucher-text-block';
+                        block.innerText = templateText;
+                        container.appendChild(block);
                     });
+
+                    loaderText.innerText = "Transmitting dispatch confirmations...";
                     
-                    checkoutBtn.style.display = 'block';
-                }
-                
-                totalAmountEl.textContent = `₵${cart.total.toFixed(2)}`;
-                
-                // Add event listeners to remove buttons
-                document.querySelectorAll('.cart-item-remove').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        removeFromCart(this.dataset.type);
+                    await fetch(FORMSPREE_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            _subject: `Azz Internet Hub - E-Voucher Purchase Receipt`,
+                            ClientName: name,
+                            ClientEmail: email,
+                            ClientPhone: phone,
+                            Product: checkerType,
+                            Quantity: quantity,
+                            TotalAmountCharged: `GH₵ ${totalPaid.toFixed(2)}`,
+                            GatewayReference: referenceId,
+                            VouchersData: compiledVouchersText
+                        })
                     });
-                });
+
+                    loader.style.display = 'none';
+                    document.getElementById('voucherDisplay').style.display = 'block';
+                    document.getElementById('voucherDisplay').scrollIntoView({ behavior: 'smooth' });
+                    
+                } else {
+                    loader.style.display = 'none';
+                    alert("Allocation Warning: Verification clear but transaction execution timed out. Reach support with Ref: " + referenceId);
+                }
+            } catch (err) {
+                loader.style.display = 'none';
+                alert("Network communication interrupt. Retain reference code: " + referenceId);
             }
+        }
 
-            // Checkout with Paystack
-            checkoutBtn.addEventListener('click', function() {
-                if (cart.items.length === 0) return;
-                
-                const email = prompt('Please enter your email address for payment receipt:');
-                if (!email) return;
-                
-                const handler = PaystackPop.setup({
-                    key: 'pk_live_8c56d91cee6884d988dd8355981e0134ab72b94b',
-                    email: email,
-                    amount: cart.total * 100, // Paystack uses kobo (multiply by 100)
-                    currency: 'GHS',
-                    ref: 'AZZ-' + Math.floor(Math.random() * 1000000000) + 1,
-                    onClose: function() {
-                        alert('Payment window closed. If you completed payment, you will receive your vouchers shortly.');
-                    },
-                    callback: function(response) {
-                        // Payment successful
-                        showReceipt(response.reference);
-                    }
-                });
-                
-                handler.openIframe();
-            });
-
-            // Show receipt after payment
-            function showReceipt(reference) {
-                document.getElementById('reference-number').textContent = reference;
-                document.getElementById('paid-amount').textContent = `₵${cart.total.toFixed(2)}`;
-                referenceCopyInput.value = reference;
-                
-                const receiptItemsEl = document.getElementById('receipt-items');
-                receiptItemsEl.innerHTML = '';
-                
-                cart.items.forEach(item => {
-                    const li = document.createElement('li');
-                    li.textContent = `${item.quantity} × ${item.name}`;
-                    receiptItemsEl.appendChild(li);
-                });
-                
-                // Set up WhatsApp button with reference
-                const whatsappMessage = `Hello Azz Internet Hub,\n\nI just made a payment for vouchers.\n\nReference Number: ${reference}`;
-                whatsappBtn.href = `https://wa.me/233598160732?text=${encodeURIComponent(whatsappMessage)}`;
-                
-                receiptSection.style.display = 'block';
-                
-                // Clear cart
-                cart.items = [];
-                cart.total = 0;
-                updateCart();
-                
-                // Scroll to receipt
-                receiptSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // Copy reference number to clipboard
-            copyBtn.addEventListener('click', function() {
-                referenceCopyInput.select();
-                document.execCommand('copy');
-                
-                // Show copied message
-                copiedMessage.style.display = 'block';
-                setTimeout(() => {
-                    copiedMessage.style.display = 'none';
-                }, 2000);
-            });
-        });
+        function downloadVouchersFile() {
+            if(!compiledVouchersText) return;
+            const blob = new Blob([compiledVouchersText], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Azz_Hub_Vouchers_${Date.now()}.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
     </script>
 </body>
 </html>
